@@ -41,7 +41,7 @@
   * ability to run tests for different browsers/OS by configuring;
     - Test can run on windows/mac/linux OS for chrome/firefox browsers using parameters in testng.xml file.
   * ability to run tests for different environments(urls) by configuring/by command-line.
-    - Environment url can be passes via command line if not it will default back to "https://www.raisin.com".
+    - Environment url can be passes via command line if not it will default back to "https://www.xxx.com".
 * Reading test data from file, for example, the name of dress, size and color in the checkout test.
 * Allure report: 
   *Integrate to defect tracking system by using @link
