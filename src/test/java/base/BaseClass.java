@@ -36,8 +36,6 @@ public class BaseClass {
     private Properties properties;
     private final String propertyFilePath = "config/Configuration.properties";
 
-    protected String existingUserEmail = "hf_challenge_123456@hf12345.com";
-    protected String existingUserPassword = "12345678";
     protected static final String baseURL="https://www.raisin.com/";
 
     public static final Logger log = Logger.getLogger(BaseClass.class.getName());
