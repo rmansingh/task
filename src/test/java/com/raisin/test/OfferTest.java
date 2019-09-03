@@ -18,7 +18,8 @@ public class OfferTest extends BaseClass {
     public void OfferTest() {
         log("------------------- Starting OfferTest Test -------------------");
         OfferPage offerpage = new OfferPage(driver);
-        offerpage.navigateToOffersPage();
+        offerpage.navigateToOffersPage()
+                .clickTab();
 //        assertThat("My account page is missing",actual,is(equalTo("expected")));
         log("------------------- Ending OfferTest Test -------------------");
     }

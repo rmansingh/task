@@ -7,7 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 /**
- * @author Rupak Mansingh this class helps the activities of partner bank page
+ * @author Rupak Mansingh
+ * this class helps the activities of partner bank page
  * every action on the page is done here
  */
 
@@ -24,8 +25,15 @@ public class OfferPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
     @Step("Navigate to offer page")
-    public void navigateToOffersPage() {
+    public OfferPage navigateToOffersPage() {
         log("Navigate to offer page");
         driver.get(baseURL + "our-offers/");
+        return this;
+    }
+
+    @Step("Blank test")
+    public void clickTab() {
+        log("Navigate to offer page");
+        OfferTab.click();
     }
 }

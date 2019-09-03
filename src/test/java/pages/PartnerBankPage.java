@@ -7,7 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 /**
  * @author Rupak Mansingh
- * Partner bank page.
+ * this class helps the activities of partner bank page
+ * every action on the page is done here
  */
 
 public class PartnerBankPage extends BasePage {
