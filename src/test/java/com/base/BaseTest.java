@@ -1,46 +1,41 @@
-package base;
+package com.base;
 
+import com.TestFailureListener;
+import com.framework.config.FileReader;
+import com.framework.driver.WebDriverFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
-import java.util.Properties;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.sql.DriverManager;
 import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: Rupak Mansingh
  * @Desc: Base class provides all the members & functions to be made visible for test classes and page objects
  */
-public class BaseClass {
+@Listeners(TestFailureListener.class)
+public class BaseTest {
 
-    public WebDriver driver;
-    public WebDriverWait wait;
+    private static WebDriver driver;
+    protected WebDriverWait wait;
     String browser, os;
-    private Properties properties;
-    private final String propertyFilePath = "config/Configuration.properties";
 
-    protected static final String baseURL="https://www.raisin.com/";
+    private static final Logger log = Logger.getLogger(BaseTest.class.getName());
 
-    public static final Logger log = Logger.getLogger(BaseClass.class.getName());
-
-    @BeforeClass
+    @BeforeMethod
     @Parameters({"browser", "os"})
     public void setUp(@Optional("chrome") String browser, @Optional("windows") String os) {
         /*Initializing log4j.*/
@@ -48,7 +43,7 @@ public class BaseClass {
         PropertyConfigurator.configure(log4jConfPath);
 
         log("Getting url environment variable and setting default value.");
-        String url = System.getProperty("url", baseURL);
+        String url = System.getProperty("url", FileReader.getInstance().getConfigReader().getApplicationUrl());
 
         log("Initializing webdriver.");
         this.browser = browser;
@@ -75,33 +70,12 @@ public class BaseClass {
     /**
      * Method to be used for getting the status of the test execution
      */
-    @AfterMethod
-    public void getResult(ITestResult result) {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            takeScreenShot(result.getMethod().getMethodName());
-        }
-    }
+ //   @AfterMethod
+//    public  WebDriver getDriverManager() {
+//        System.out.println("printing the driver: " + driver);
+//        return driver;
+//    }
 
-    /**
-     * Method used for getting the screen capture with the name in a particular format
-     * @param methodName
-     */
-    public void takeScreenShot(String methodName) {
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
-        try {
-            File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-            String reportDirectory = new File(System.getProperty("user.dir")).getAbsolutePath()
-                    + "/src/test/resources/failure_screencaptures/";
-            File destFile = new File(String.format("%sFailure_ScreenCaptures_%s_%s_%s_%s.png", reportDirectory, os, browser, methodName, formater.format(calendar.getTime())));
-            FileHandler.copy(srcFile, destFile);
-            Reporter.log("<a href='" + destFile.getAbsolutePath() + "'><img src='" + destFile.getAbsolutePath()
-                    + "' height='100' width='100'/> </a");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Logging method so that the same log is added in logger as well as in TestNG Report
@@ -115,6 +89,7 @@ public class BaseClass {
 
     /**
      * Common method to wait for visibility of elements in all test classes
+     *
      * @param element
      * @return
      */
@@ -138,4 +113,7 @@ public class BaseClass {
         return testData;
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
 }
