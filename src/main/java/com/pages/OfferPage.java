@@ -75,13 +75,13 @@ public class OfferPage extends BasePage {
         return new RegistrationPage(driver);
     }
 
-    public int getBankOffersFromTerm() {
+    public int getPartnerBankOffersFromTermDropDown() {
         Select sel = new Select(termDropdown);
         String strCurrentValue = sel.getFirstSelectedOption().getText();
         return getOffers(strCurrentValue);
     }
 
-    public int getBanks() {
+    public int getPartnerBankOffers() {
         List<WebElement> listOfInterestRate = driver.findElements(By.xpath("//div[@class='OfferRowstyles__number--3PAX1']"));
         return listOfInterestRate.size();
     }

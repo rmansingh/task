@@ -34,7 +34,7 @@ public class OfferTest extends BaseTest {
                 .navigateToOffersPage()
                 .selectTermYear(year);
 
-        assertThat("Number of offers didn't match with term drop down options", offerpage.getBanks(), is(offerpage.getBankOffersFromTerm()));
+        assertThat("Number of offers didn't match with term drop down options", offerpage.getPartnerBankOffers(), is(offerpage.getPartnerBankOffersFromTermDropDown()));
     }
 
     @Test(dataProvider = "yearTerm")

@@ -62,6 +62,6 @@ public class PartnerBankPage extends BasePage {
                 return index;
             }
         }
-        throw new NoSuchElementException("No such element found");
+        throw new NoSuchElementException("No such element found for S&P rating");
     }
 }
