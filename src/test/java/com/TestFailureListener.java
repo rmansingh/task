@@ -2,7 +2,6 @@ package com;
 
 import com.base.BaseTest;
 import com.framework.driver.WebDriverFactory;
-import com.pages.BasePage;
 import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -15,10 +14,8 @@ import org.testng.TestListenerAdapter;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import com.base.BaseTest;
 
 import static java.util.Objects.nonNull;
 

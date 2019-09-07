@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-
 /**
  * @author Rupak Mansingh This class helps to get properties file data and supply to
  *         UI scripts
@@ -35,16 +34,6 @@ public class ConfigFileReader {
 		}
 	}
 
-	// method to get implicit wait from properties file
-	public long getImplicitlyWait() {
-
-		String implicitlyWait = properties.getProperty("implicitlyWait");
-		if (implicitlyWait != null)
-			return Long.parseLong(implicitlyWait);
-		else
-			throw new RuntimeException("implicitlyWait not specified in the configuration.properties file.");
-	}
-
 	// method to get baseurl from properties file
 	public String getApplicationUrl() {
 
@@ -54,15 +43,4 @@ public class ConfigFileReader {
 		else
 			throw new RuntimeException("url not specified in the configuration.properties file.");
 	}
-
-
-	// method to get browser window size to maximize from properties file
-	public Boolean getBrowserWindowSize() {
-
-		String windowSize = properties.getProperty("windowMaximize");
-		if (windowSize != null)
-			return Boolean.valueOf(windowSize);
-		return true;
-	}
-
 }

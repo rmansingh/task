@@ -2,8 +2,7 @@ package com.framework.config;
 
 /**
  * @author Rupak This will help if framework has multiple external files
- *         like properties, excel then using this user can instantiate Hold
- *         single instance of class till execution
+ *         like properties, excel etc.
  */
 public class FileReader {
 
